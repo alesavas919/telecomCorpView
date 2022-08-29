@@ -41,6 +41,7 @@ export class LLoginComponent implements OnInit {
   login(){
     if(this.saveUser != undefined){      
       this._login.login(this.user.value).subscribe((res:any)=>{
+        this._login.logOut()
         Swal.fire({
           icon: 'success',
           title: 'Bienvenido! 😀',

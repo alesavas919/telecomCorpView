@@ -34,18 +34,7 @@ export class IFooterComponent implements OnInit {
     ,phoneNumber:new FormControl('',[Validators.required])
     ,roles:new FormControl('',[Validators.required])
   })
-  /*
-          name:new FormControl('',Validators.required),
-        login:new FormControl('',[Validators.required]), 
-        age:new FormControl('',[Validators.required]),
-        email:new FormControl('',[Validators.required,Validators.email]),    
-        password:new FormControl('',[Validators.required]),    
-        code:new FormControl('',[Validators.required]),    
-        address:new FormControl('',[Validators.required]),
-        //tel
-        phoneNumber:new FormControl('',[Validators.required]),
-        roles:new FormControl(["admin"])
-  */
+
   json=JSON
   @ViewChild(IIndexComponent)indexComp:IIndexComponent|undefined//
   constructor(
@@ -54,11 +43,7 @@ export class IFooterComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    /*setTimeout(() => {
-      console.log("Desde el hijo");
-      console.log(this.data);      
-     console.log(this.data.roles[0].rolName)
-    }, 2000);*/
+
   }
   //@Input() updateUsers:any
   @Output() private updateUsers = new EventEmitter();
@@ -137,40 +122,54 @@ export class IFooterComponent implements OnInit {
     this.ifMyUserIsAdmin()
     
     if(this._login.userStatus.includes("ADMIN")){
-      let id = this.alterUser.value.id
-      if(id != ""){
-        console.log(id);
-        
-        this._admin.deleteUser(id).subscribe(res=>{
-          Swal.fire({
-            icon: 'success',
-            title: 'Excelente',
-            text: 'As eliminado el usuario con exito',
-          })
-
-          this._admin.findAll().subscribe((res:any)=>{
-            this.updateUsers.emit(res)   
-          })
-        },(err:any)=>{
-          if(err.status >= 200 && err.status<300){
+      let id = this.alterUser.value.id,name = this.alterUser.value.login
+      console.log('====================================');
+      console.log(name);
+      console.log('====================================');
+      console.log('====================================');
+      console.log(localStorage.getItem("userName"));
+      console.log('====================================');
+      if(localStorage.getItem("userName") != name){
+        if(id != ""){
+          console.log(id);
+          
+          this._admin.deleteUser(id).subscribe(res=>{
             Swal.fire({
               icon: 'success',
               title: 'Excelente',
               text: 'As eliminado el usuario con exito',
             })
-            
-            
+  
             this._admin.findAll().subscribe((res:any)=>{
-              this.updateUsers.emit(res) 
+              this.updateUsers.emit(res)   
             })
-
-          }
-        })
+          },(err:any)=>{
+            if(err.status >= 200 && err.status<300){
+              Swal.fire({
+                icon: 'success',
+                title: 'Excelente',
+                text: 'As eliminado el usuario con exito',
+              })
+              
+              
+              this._admin.findAll().subscribe((res:any)=>{
+                this.updateUsers.emit(res) 
+              })
+  
+            }
+          })
+        }else{
+          Swal.fire({
+            icon: 'info',
+            title: 'Lo sentimos',
+            text: 'Pero el id se encuentra vacio, seleciona el usuario otra vez',
+          })
+        }
       }else{
         Swal.fire({
-          icon: 'info',
-          title: 'Lo sentimos',
-          text: 'Pero el id se encuentra vacio, seleciona el usuario otra vez',
+          icon: 'warning',
+          title: 'Ho ho!',
+          text: 'No puedes elimintarte a ti mismo',
         })
       }
       this.erraseMap()
@@ -205,6 +204,12 @@ export class IFooterComponent implements OnInit {
         },(err)=>{
           console.log(err);
         })        
+      })
+    }else{
+      Swal.fire({
+        icon: 'error',
+        title: 'Lo sentimos!',
+        text: 'No tienes permisos de administrador',
       })
     }
   }
