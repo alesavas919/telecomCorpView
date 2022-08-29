@@ -1,0 +1,27 @@
+
+<nav class="navbar navbar-expand-sm navbar bg-light">
+    <div class="container-fluid">
+        <div class="user">
+            <div class="person">
+                <mat-icon>person</mat-icon>
+                <span>{{user.userName==null?"Desconocido":user.userName}}</span>
+                <span>{{user.authority==null?"Sin cargo":user.authority}}</span>
+            </div>
+            <div class="resp-btn" *ngIf="user.logOut ">
+                <mat-icon>expand_more</mat-icon>
+                <button mat-raised-button (click)="logOut()"><p><span>Salir</span><mat-icon>logout</mat-icon></p></button>
+            </div>
+        </div>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="navbar-nav me-auto" ><!-- class=" my-2 my-lg-0 navbar-nav-scroll"-style="--bs-scroll-height: 100px;" -->
+            </div>
+            <div class="d-flex location">
+                <a routerLink="/login/login" routerLinkActive="router-link-active" >Inicia Sesion</a>
+                <a routerLink="/login/register" routerLinkActive="router-link-active" >Registrate</a>
+            </div>
+        </div>
+    </div>
+  </nav>

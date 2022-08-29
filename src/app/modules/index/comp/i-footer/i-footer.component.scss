@@ -1,0 +1,23 @@
+.alterUser{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px 5px;
+    width: 88%;
+    margin: 0 auto;
+    div{
+        display: block;
+        flex-grow: 1;
+    }
+    .btn-user-data{
+        display: flex;
+        width: 100%;
+        flex-wrap: wrap;
+        flex-direction: row;
+        justify-content: space-around;
+        gap: 5px 0;
+        align-items: center;
+    }
+}

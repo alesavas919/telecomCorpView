@@ -1,0 +1,170 @@
+@use "../../../../../styles.scss" as index;
+
+//constants
+$loginRadius:3px;
+
+//conditions
+@mixin login {
+    @media screen and (max-width: 800px) {
+        .imgleft,.imgright{
+            width: 20%;
+        }
+        .mid{
+            width: 60%;
+        }
+    }
+    @media screen and (max-width:500px) {
+        .imgleft{
+            display: none;
+        }
+        .imgright{
+            width: 30%;
+        }
+        .mid{
+            width: 70%;
+            h1{
+                text-align: center;
+            }
+        }
+    }
+    @media screen and (max-width: 422px) {
+        .imgright{
+            display: none;
+        }
+        .mid{
+            width: 100%;
+            
+        }
+    }
+    @media screen and (max-width: 300px) {
+        
+        .mid{
+            width: 100%;
+            height: max-content;
+            border-radius: $loginRadius;
+            border: 1.5px solid #caccd1;
+            max-width: 98%;
+            
+        }
+        
+    }
+   
+}
+
+//styles
+.content{
+    width: index.$maxWidth;
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto;
+    font-family: "Open Sans";
+    font-size: 15px;
+    .login{
+        display: block;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        max-width: 100%;
+        margin-top: 110px;
+        margin-bottom: 20px;
+        height: 500px;
+        background-color: #f0f0f0;//fff f4f7f9 eff3f6 f0f0f0
+        
+        .imgleft{
+            display: block;
+            background-image: url("../../../../../assets/img/login/annie-spratt-wgivdx9dBdQ-unsplash.jpg");
+            background-repeat: no-repeat;
+            background-size: 200% 100%;
+            background-position-x: left;
+            border-radius: $loginRadius 0 0 $loginRadius;
+            
+            width: 25%;
+
+        }
+        .imgright{
+            display: block;
+            background-image: url("../../../../../assets/img/login/annie-spratt-wgivdx9dBdQ-unsplash.jpg");
+            background-repeat: no-repeat;
+            background-size: 200% 100%;
+            border-radius: 0 $loginRadius $loginRadius 0;
+            background-position-x: right;
+            width: 25%;
+        }
+        .mid{
+            display: block;
+            width: 50%;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            h1{
+                width: 70%;
+                margin: 0 auto;
+                margin-top: 25px;
+                margin-bottom: 60px;
+                font-family: "Courgette";
+                font-weight: 800;
+                font-size: 2.3rem;
+            }
+            div{
+                margin: 0 auto;
+                width: 90%;
+              
+            }
+            .input-group{
+                margin-top: 20px;
+                height: 50px;
+                input{
+                    height: 50px;
+                }
+            }
+            .btngroupcl{
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                align-items: center;
+                margin-top: 42px;
+                gap: 20px 5px;
+                button{
+                    margin: 0 auto;
+                }
+                .form-check{
+                    width: max-content;
+                    user-select: none;
+                    label,input{
+                        cursor: pointer;
+                    }
+                }
+                margin-bottom: 25px;
+            }
+            .reg{
+                margin: 0 auto;
+                margin-top: 10px;
+                text-align: right;
+                a{
+                    cursor: pointer;
+                    color: #00334e;//6d6e70
+                }
+                a:hover{
+                    color: #00aeff;
+                    text-decoration: underline;
+                    font-style: italic;
+                }
+            }
+        }
+        @include login();
+
+    }
+}
+.pattern{
+    display: block;
+    position: fixed;
+    top: 0;
+    background-image: url("../../../../../assets/patterns/triangle-mosaic.png");
+    background-repeat: repeat;
+    background-size: 20% 20%;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+}
+

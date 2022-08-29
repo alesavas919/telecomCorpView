@@ -1,0 +1,91 @@
+nav{
+    .user{
+        width: 150px;
+        user-select: none;
+        .resp-btn{
+            align-content: center;
+            text-align: center;
+            height: 25px;
+            cursor: pointer;
+            button{
+                display: none;
+                margin: 0 auto;
+                width: 100%;
+            }
+        }
+        .resp-btn:hover{
+            cursor: pointer;
+            button{
+                display: flex;
+                word-wrap: normal;
+                justify-content: center;
+                align-content: center;
+                width: 100%;
+            }
+            p{
+                text-align: center;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 0;
+            }
+
+        }
+        .person{
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+            align-items: center;
+            span:nth-child(3){
+                width: 100%;
+                text-align: center;
+            }
+        }
+    }
+    .location{
+        a{
+            text-decoration: none;
+            color: #000;
+            margin-right: 20px;
+            padding: 2px;
+            padding-top: 5px;
+
+        }
+        a::after{
+            content: "";
+            display: block;
+            position: relative;
+            width: 0;
+            height: 0;
+            border-bottom: 1px solid transparent;
+            width: calc(100%);
+            transform: rotateY(90deg);
+
+        }
+        a:hover:after{
+            content: "";
+            display: block;
+            position: relative;
+            animation-name: sel;
+            animation-duration: 2s;
+            animation-iteration-count: infinite;
+
+        }
+    }
+}
+@keyframes sel {
+    0%{
+        border-bottom: 1px solid black;
+        transform: rotateY(90deg);   
+    }
+    50%{
+        border-bottom: 1px solid black;
+        transform: rotateY(180deg);
+    }
+    100%{
+        transform: rotateY(90deg);
+
+        border-bottom: 1px solid black;
+    }
+}

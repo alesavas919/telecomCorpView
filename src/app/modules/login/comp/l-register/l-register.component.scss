@@ -1,0 +1,75 @@
+@use "../../../../../styles.scss" as global;
+$widthController:500px;
+.tel{
+    display: flex;
+    input{
+        width: 80px;
+        text-align: center;
+        
+    }
+}
+.contain{
+
+    .content{
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        align-items: center;
+    
+        width: global.$maxWidth;
+        max-width: 97%;
+        margin: 0 auto;
+        margin-top: 100px;
+        margin-bottom: 40px;
+        //border: 1px solid black;
+        background: rgb(#eeeeee,100%);//91% e5e5e5 dddddd eeeeee f1faee
+        border-radius: 5px;
+        border-bottom: 10px solid #023047;
+        padding: 50px 0;
+        div:nth-child(1){
+            width: $widthController;
+        }
+        div:nth-child(2){
+            width: $widthController - 50px;
+        }
+        div:nth-child(3){
+            width: $widthController + 50px;
+        }
+        div:nth-child(4){
+            width: $widthController + 100px;
+        }
+        div:nth-child(5){
+            width: $widthController + 200px;
+        }
+        div{
+            padding: 0 5px;
+            
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: row;
+            align-items: center;
+            gap: 10px 20px;
+            //border: 1px solid black;
+            max-width: 100%;
+            mat-form-field{
+                max-width: 100%;
+                flex-grow: 1;
+                //width: 210px;
+            }
+        }
+        button{
+            height: 30px;
+        }
+    }
+}
+.pattern{
+    position: fixed;
+    background-image: url("../../../../../assets/img/login/thought-catalog-505eectW54k-unsplash.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    z-index: -1;
+    
+}

@@ -1,0 +1,35 @@
+<app-i-mainbar></app-i-mainbar>
+<div class="content">
+  <div class="indenty">
+    <div class="table-responsive-sm">
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Nombre</th>
+            <th scope="col">Usuario</th>
+            <th scope="col">Edad</th>
+            <th scope="col">Telefono</th>
+            <th scope="col">Rol de Usuario</th>
+          </tr>
+        </thead>
+        <tbody (click)="selected($event)">
+          <tr *ngFor="let item of users">
+            <td>{{item.name}}</td>
+            <td>{{item.login}}</td>
+            <td>{{item.age}}</td>
+            <td>{{item.phoneNumber}}</td>
+            <td>{{item.roles[0].rolName}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+      <mat-divider></mat-divider>
+    <app-i-footer [alterUser]="alterPerson" (updateUsers)="loadingData($event)"></app-i-footer>
+</div>
+</div>
+<div class="btngrup" (click)="updown($event)">
+  <div><mat-icon>arrow_upward</mat-icon></div>
+  <mat-divider></mat-divider>
+  <div><mat-icon>arrow_downward</mat-icon></div>
+</div>
+<div class="pattern"></div>

@@ -1,0 +1,112 @@
+@use "../../../../../styles.scss" as index;
+.latNav{
+    display: block;
+    position: fixed;
+    height: 100%;
+    background: rgb(#fff,40%);
+    .internal{
+        display: block;
+        height: 100vh;
+        width: 15px;
+        transition-duration: 2s;
+        //border-right: 4px solid transparent;
+    }
+    .internal:hover{
+        width: 28vw;
+        transition-duration: 2s;
+        //border-right: 4px solid black;
+        background: #1b263b;//8d99ae
+    }
+    .user{
+        display: none;
+        flex-wrap: wrap;
+        flex-direction: row;
+        justify-content: center;
+        align-items: baseline;
+
+        color: transparent;
+        border-bottom: 1px solid #fff;
+        padding-bottom: 10px;
+        .person{
+            display: block;
+            position: relative;
+            width: 100%;
+            font-size: 20vw;
+            height: max-content;
+            text-align: center;
+            color: #fff;
+
+        }
+        div{
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: row;
+            justify-content: space-evenly;
+
+            gap: 5px 10px;
+            align-items: baseline;
+            span{
+                text-align: center;
+                width: max-content;
+                display: block;
+                color: #fff;
+                word-wrap: break-word;
+            }
+        }
+    }
+    .opt{
+        display: none;
+
+        margin-top: 10px;
+        color: transparent;
+        div{
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            list-style: none;
+            margin: 0;
+            p{
+                border: 1px solid white;
+                color: #fff;
+                width: 90%;
+                text-align: center;
+                cursor: pointer;
+            }
+        }
+    }
+
+    .arrowf{
+        display: block;
+        position: fixed;
+        top: 45vh;
+        transition-duration: 2s;
+        border: 1px solid black;
+        background: transparent;
+        text-align: right;
+        border-radius: 10px 100px 100px 10px;
+        width: 25px;
+        height: 25px;
+        cursor: pointer;
+    }
+    .internal:hover .user{
+        display: block;
+        color: black;
+        transition-duration: 2s;
+
+    }
+    .internal:hover .arrowf{
+        transition-duration: 1.75s;
+        transform: translateX(28vw) ;
+    }
+    .internal:hover .user{
+        display: flex;
+        transition-delay: 0.8s;
+    }
+    .internal:hover .opt{
+        display: block;
+        transition-delay: 0.8s;
+    }
+
+}
