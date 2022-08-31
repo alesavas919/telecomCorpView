@@ -75,9 +75,9 @@ export class IIndexComponent implements OnInit,OnChanges {
      ,roles:new FormControl(this.person.roles[0].rolName,[Validators.required])
    })
     //this.person.roles = this.person.roles[0].rolName
-    //console.log(this.person);
+    //console.log(this.alterPerson.value);
     
-    window.scrollTo(0,window.screen.height)
+    window.scrollTo(0,window.screen.availHeight)
   }
   updown(e:any){
     let value = e.target.localName == "div"?e.target.firstChild:e.target

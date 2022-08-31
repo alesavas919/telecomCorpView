@@ -42,18 +42,22 @@ export class LLoginComponent implements OnInit {
     if(this.saveUser != undefined){      
       this._login.login(this.user.value).subscribe((res:any)=>{
         this._login.logOut()
+        this._login.userStatus = ""
+        this._login.userName = ""
         Swal.fire({
           icon: 'success',
           title: 'Bienvenido! 😀',
           text: 'Que gusto volverte a ver',
         }).then((e:any)=>{
+
           this._router.navigate(["/index"])
         })
-        console.log(res);
+        //console.log(res);
         if(this.saveUser!.nativeElement.checked){
           this._login.rememberUser(res)
           if(this.main != undefined){
             this._login.setUser(res)
+
             this.main.user={
               userName:this._login.myUser.userName,
               authority:this._login.myUser.authority!.replace('"','').replace('"',''),
@@ -61,7 +65,10 @@ export class LLoginComponent implements OnInit {
               token:res.token,
               bearer:res.bearer
             }
+            
+            
           }
+          
         }else{
           if(this.main != undefined){
             this._login.setUser(res)
@@ -72,6 +79,8 @@ export class LLoginComponent implements OnInit {
               token:res.token,
               bearer:res.bearer
             }
+            this._login.userName = this._login.myUser.userName
+            
           }
         }
       },(err:any)=>{

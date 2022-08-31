@@ -19,7 +19,7 @@ export class LoginService {
   private tokenHeader = new HttpHeaders({ "Authorization": `Bearer ${this.myUser.token}` }); 
   private options = { headers: this.tokenHeader };  
   userStatus:string = ""
-
+  userName:any = ""
   constructor(
     private _http: HttpClient,
   ) { }
@@ -33,7 +33,7 @@ export class LoginService {
     return this._http.post(this.baseUrl+"auth/newUser",user)
   }
   updateUser(user:any):Observable<any>{
-    return this._http.put(this.baseUrl+"user/updateUser",user,this.options)
+    return this._http.put(this.baseUrl+"auth/updateUser",user)/*,user,this.options */
   }
   userStatusValid(user:any):Observable<any>{
     return this._http.post(this.baseUrl+"auth/login",user)
@@ -55,6 +55,7 @@ export class LoginService {
     this.myUser.userName = token.userName
     this.myUser.authority = JSON.stringify(token.authorities[0].authority)
     this.myUser.logOut = true
+    this.userName = token.userName
   }
   logOut(){
     this.myUser={

@@ -9,7 +9,7 @@
     
             <mat-form-field  appearance="fill">
                 <mat-label>Edad</mat-label>
-                <input formControlName="age" type="number" matInput #postalCode maxlength="3" placeholder="Ex. 94105" value="94043">
+                <input formControlName="age" type="number" matInput #postalCode min="0" max="150" placeholder="Ex. 94105" value="94043">
                 <!--<mat-hint align="end">{{postalCode.value.length}} / 5</mat-hint>-->
             </mat-form-field>
         </div>
@@ -30,7 +30,7 @@
         <div>
             <mat-form-field  appearance="fill">
                 <mat-label>Codigo</mat-label>
-                <input formControlName="code" type="number" matInput #postalCode maxlength="3" placeholder="Ex. 94105" value="94043">
+                <input formControlName="code" type="number" min="0" matInput #postalCode maxlength="3" placeholder="Ex. 94105" value="94043">
                 <!--<mat-hint align="end">{{postalCode.value.length}} / 5</mat-hint>-->
             </mat-form-field>
     
@@ -63,7 +63,7 @@
     
             <mat-form-field  appearance="fill">
                 <mat-label>Valida tu Contraseña</mat-label>
-                <input type="password" matInput>
+                <input type="password" matInput #password>
             </mat-form-field>
         </div>
         <button mat-stroked-button color="primary" (click)="register()">Registrate</button>

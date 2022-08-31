@@ -11,12 +11,12 @@
 
     <div>
         <label for="exampleFormControlInput1" class="form-label">Edad</label>
-        <input type="text" value="{{data.age}}" formControlName="age" class="form-control" id="exampleFormControlInput1" placeholder="20">
+        <input type="number" value="{{data.age}}" formControlName="age" class="form-control" min="14" max="150" id="exampleFormControlInput1" placeholder="20">
     </div>
 
     <div>
         <label for="exampleFormControlInput1" class="form-label">Teléfono</label>
-        <input type="text" value="{{data.phoneNumber}}" formControlName="phoneNumber" class="form-control" id="exampleFormControlInput1" placeholder="555-555-1234">
+        <input type="text" value="{{data.phoneNumber}}" (keydown)="telephonAdd($event)" formControlName="phoneNumber" [maxLength]="12" class="form-control" id="exampleFormControlInput1" placeholder="555-555-1234">
     </div>
 
     <div>
@@ -27,7 +27,7 @@
     <div>
         <label for="exampleFormControlInput1" class="form-label">Rol</label>
         <select class="form-select" aria-label="Default select example" formControlName="roles">
-            <option value="{{data.roles[0].rolName}}">{{data.roles[0].rolName}}</option>
+            <option [value]="rolName">{{rolName}}</option>
             <option value="admin">ADMIN</option>
             <option value="user">USER</option>
             <option value="viewer">VIEWER</option>

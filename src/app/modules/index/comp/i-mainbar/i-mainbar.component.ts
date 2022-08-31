@@ -22,9 +22,12 @@ export class IMainbarComponent implements OnInit {
   }
   logOut(){
     this._login.logOut()
+    this._login.userStatus = ""
+    this._login.userName = ""
     this._router.navigate(['login'])
   }
   goLogin(){
+    this._login.userStatus = ""
     this._router.navigate(['login'])
   }
 }

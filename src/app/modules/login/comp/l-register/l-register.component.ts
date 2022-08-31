@@ -1,6 +1,7 @@
+import { Router } from '@angular/router';
 import { LoginService } from './../../../../services/user/login.service';
 import { MyTel } from './../../../../interface/tel';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
 
@@ -15,21 +16,22 @@ export class LRegisterComponent implements OnInit {
   val=true
   
   constructor(
-    private _login:LoginService
+    private _login:LoginService,
+    private _router:Router
   ) { }
 
   ngOnInit(): void {
     this.form = new FormGroup({
-        name:new FormControl('',Validators.required),
-        login:new FormControl('',[Validators.required]), 
-        age:new FormControl('',[Validators.required]),
-        email:new FormControl('',[Validators.required,Validators.email]),    
-        password:new FormControl('',[Validators.required]),    
-        code:new FormControl('',[Validators.required]),    
-        address:new FormControl('',[Validators.required]),
-        //tel
-        phoneNumber:new FormControl('',[Validators.required]),
-        roles:new FormControl(["admin"])
+      address:new FormControl('',[Validators.required,Validators.minLength(5)])
+      ,age:new FormControl('',[Validators.required,Validators.min(14),Validators.max(150)])
+      ,code:new FormControl('',[Validators.required,Validators.min(0)])
+      ,email:new FormControl('',[Validators.minLength(5),Validators.required/*,Validators.pattern("[a-zñA-ZÑ0-9]@[a-zñA-ZÑ0-9].[a-zñA-ZÑ0-9]")*/])
+      ,id:new FormControl("")
+      ,login:new FormControl('',[Validators.required,Validators.minLength(4)])
+      ,name:new FormControl('',[Validators.required,Validators.minLength(4)])
+      ,password:new FormControl('',[Validators.required,Validators.minLength(4)])
+      ,phoneNumber:new FormControl('',[Validators.required,Validators.minLength(8)])
+      ,roles:new FormControl(['admin'])
         /*
         area:new FormControl('',[Validators.required,Validators.min(0)]),    
         exchange:new FormControl('',[Validators.required,Validators.min(0)]),    
@@ -40,7 +42,7 @@ export class LRegisterComponent implements OnInit {
         */
     
   }
-  
+  @ViewChild("password",{static:false})password:ElementRef|undefined
   tabOption(e:any){
     if(e.target.value.length >= 3 && e.target.value != "" && e.target.id != "subscriber"){
       if(e.target.id == "area"){
@@ -64,32 +66,46 @@ export class LRegisterComponent implements OnInit {
       }
     }
     register(){
+      
       if(this.form.status != "INVALID"){
-        this._login.sigInAsAdmin(this.form.value).subscribe((res:any)=>{
-          Swal.fire({
-            icon: 'success',
-            title: 'Felicitaciones! 😀',
-            text: 'Te as registrado con exito',
-          })
-          console.log(res);
-          
-        },(err:any)=>{
-          console.log(err);
-          if(err.status < 300 && err.status >= 200){
+        //console.log(this.password?.nativeElement.value);
+        
+        if(this.password?.nativeElement.value == this.form.value.password){
+          this._login.sigInAsAdmin(this.form.value).subscribe((res:any)=>{
             Swal.fire({
               icon: 'success',
               title: 'Felicitaciones! 😀',
               text: 'Te as registrado con exito',
             })
-          }else{
-            Swal.fire({
-              icon: 'error',
-              title: 'Ups',
-              text: 'Lo sentimos, revisa tus datos que algo falta',
-            })
-          }
-        })
-        
+            console.log(res);
+            
+          },(err:any)=>{
+            console.log(err);
+            if(err.status < 300 && err.status >= 200){
+              Swal.fire({
+                icon: 'success',
+                title: 'Felicitaciones! 😀',
+                text: 'Te as registrado con exito',
+                footer:'Ahora pudes ir a logearte'
+              }).then(res=>{
+                this._router.navigate(["login"])
+              })
+            }else{
+              Swal.fire({
+                icon: 'error',
+                title: 'Ups',
+                text: 'Lo sentimos, revisa tus datos que algo falta',
+              })
+            }
+          })
+        }else{
+          Swal.fire({
+            icon: 'error',
+            title: 'Ho ho',
+            text: 'Te falta validar tu contraseña',
+            footer: 'Te deseamos lo mejor!'
+          })
+        }
       }else{
         Swal.fire({
           icon: 'error',
