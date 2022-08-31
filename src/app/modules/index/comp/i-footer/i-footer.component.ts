@@ -66,8 +66,11 @@ export class IFooterComponent implements OnInit {
       //console.log(this.data);
       
       console.log("Data id: "+this.data.id+"");
+      console.log(this.data.roles);
+      console.log("roles: "+this.data.roles);
+      this.data.roles.length
       
-        if(!this.data.id && this.data != ""){
+        if(!this.data.id && this.data != "" ){
           //create user
           let create:any = {}
           create = this.alterUser.value
@@ -75,7 +78,7 @@ export class IFooterComponent implements OnInit {
           this.data.id = ""
           //console.log(create);
           //console.log(this.alterUser);
-          
+          if(this.data.roles != null)if(this.data.roles[0].length > 1){
           this._login.createUser(create).subscribe(res=>{
             Swal.fire({
               icon: 'success',
@@ -114,23 +117,43 @@ export class IFooterComponent implements OnInit {
               console.log(err);
               
             }
-          })
+          })}
+          else{
+            Swal.fire({
+              icon: 'error',
+              title: 'Sucedio un problema',
+              text: 'Faltan campos por llenar o los campos estan mal escritos',
+              footer:'Recuerda: La edad debe ser mayor a 14, el codigo no se repite'
+            })
+          }
         }else{
+
+          
+
+          if(this.data.roles[0].length >= 1){
+          console.log("unciona");
+          
+        }else{
+          Swal.fire({
+            icon: 'error',
+            title: 'Sucedio un problema',
+            text: 'Faltan campos por llenar o los campos estan mal escritos',
+            footer:'Recuerda: La edad debe ser mayor a 14, el codigo no se repite'
+          })
+        }
+        /*
           
           let update:any = {}
           update = this.alterUser.value
-          
-          let create:any = {}
+                  let create:any = {}
           create = this.alterUser.value
           create.roles = [create.roles] 
-          
-  
           update.roles = [update.roles]
-          /*Swal.fire({
+          Swal.fire({
             icon: 'success',
             title: 'Excelente',
             text: 'Lo siento, aun no esta disponible el editar, puedes presionar en "Limpiar Contenido" para eliminar y crear un usuario',
-          })*/
+          })
           //console.log(update);
           //console.log(update);
           //console.log(update);
@@ -148,7 +171,7 @@ export class IFooterComponent implements OnInit {
               
             }
           })
-          
+          */
          /*this._admin.deleteUser(update.id).subscribe(resExt=>{
         
           },(err:any)=>{
